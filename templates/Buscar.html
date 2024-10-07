@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Asignaturas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-3 col-lg-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <div class="text-center my-4">
+                        <a href="{{ url_for('estudiante') }}">
+                            <img src="{{ url_for('static', filename='img/LogoMOKTEC.webp') }}" alt="Logo MOKTEC"
+                                class="img-fluid rounded-circle">
+                        </a>
+                    </div>
+                    <h4 class="text-center text-primary font-weight-bold">Estudiante</h4>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('perfil_estudiante') }}">
+                                <i class="fas fa-user"></i> Perfil
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('asignaturas_estudiante') }}">
+                                <i class="fas fa-book"></i> Asignaturas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('notas_estudiante') }}">
+                                <i class="fas fa-clipboard-list"></i> Ver Notas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-clock"></i> Horarios
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-cog"></i> Configurar
+                            </a>
+                        </li>
+                        <a href="{{ url_for('logout') }}" class="btn btn-danger btn-sm">Cerrar sesión</a>
+                    </ul>
+                </div>
+            </nav>
+
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                <h1>Buscar Asignaturas</h1>
+                <div class="table-container">
+                    <h2 class="mt-4">Selecciona Asignatura y Profesor</h2>
+                    <form action="{{ url_for('mostrar_asignaturas') }}" method="POST">
+                        <div class="form-group">
+                            <label for="asignatura">Selecciona Asignatura:</label>
+                            <select name="asignatura" id="asignatura" class="form-control" onchange="updateProfesor()">
+                                {% for asignatura in asignaturas %}
+                                    <option value="{{ asignatura[0] }}" data-profesor="{{ asignatura[2] }}">{{ asignatura[1] }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="profesor">Selecciona Profesor:</label>
+                            <input type="text" id="profesor" class="form-control" readonly>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Mostrar</button>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        function updateProfesor() {
+            var asignaturaSelect = document.getElementById("asignatura");
+            var profesorInput = document.getElementById("profesor");
+            var selectedOption = asignaturaSelect.options[asignaturaSelect.selectedIndex];
+            var profesorId = selectedOption.getAttribute("data-profesor");
+
+            // Limpiar el campo del profesor
+            profesorInput.value = "";
+
+            // Seleccionar el profesor correspondiente
+            for (var i = 0; i < profesorInput.options.length; i++) {
+                if (profesorInput.options[i].value == profesorId) {
+                    profesorInput.value = profesorInput.options[i].text;
+                    break;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

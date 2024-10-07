@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOKTEC - Training & Human Development</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="C:/Users/omarb/OneDrive/Documentos/WEB AVANZADA/styles/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+    <header class="bg-light">
+        <div class="container text-center">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="{{ url_for('home') }}">
+                    <img src="{{ url_for('static', filename='img/LogoMOKTEC.webp') }}" alt="MOKTEC Logo"
+                        class="img-fluid rounded-circle" style="max-width: 120px;">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#pregrados">Pregrados</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#ofertas">Ofertas académicas</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#docentes">Docentes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Gestión Información</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#nosotros">Nosotros</a></li>
+                    </ul>
+                    <div class="input-group my-2 my-lg-0 ml-auto" style="max-width: 300px;">
+                        <input type="text" class="form-control form-control-sm" placeholder="Buscar...">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary btn-sm" type="button">Buscar</button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero row">
+            <div class="col-md-6 text-left mt-5">
+                <h1>MOKTEC</h1>
+                <p>Formando líderes para el futuro tecnológico</p>
+                <p>Descubre nuestros programas innovadores y únete a la revolución educativa</p>
+                <button class="btn btn-primary">INSCRÍBETE AHORA</button>
+                <a href="#programas" class="btn btn-outline-secondary ml-2">Explorar Programas</a>
+            </div>
+            <div class="col-md-6 text-right">
+                <img src="{{ url_for('static', filename='img/LogoMOKTEC.webp') }}" alt="MOKTEC Logo" class="img-fluid rounded"
+                    style="max-width: 300px; border-radius: 15px;">
+            </div>
+        </section>
+
+        <section class="features row justify-content-center align-items-center"
+            style="background-color: #f0f0f0; width: 100vw; margin-left: calc(-50vw + 50%); padding-top: 20px; padding-bottom: 20px;">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-md text-center mb-3">
+                        <img src="{{ url_for('static', filename='img/impresora.png') }}" alt="Reportes"
+                            class="img-fluid feature-icon"
+                            style="max-width: 60px; height: auto; transition: transform 0.3s ease;">
+                        <span class="d-block mt-3">REPORTES</span>
+                    </div>
+                    <div class="col-md text-center mb-3">
+                        <img src="{{ url_for('static', filename='img/libro.png') }}" alt="Biblioteca"
+                            class="img-fluid feature-icon"
+                            style="max-width: 60px; height: auto; transition: transform 0.3s ease;">
+                        <span class="d-block mt-3">BIBLIOTECA</span>
+                    </div>
+                    <div class="col-md text-center mb-3">
+                        <a href="{{ url_for('login') }}" class="text-decoration-none">
+                            <img src="{{ url_for('static', filename='img/personas.png') }}" alt="Gestión Información"
+                                class="img-fluid feature-icon"
+                                style="max-width: 60px; height: auto; transition: transform 0.3s ease;">
+                            <span class="d-block mt-3">GESTIÓN INFORMACIÓN</span>
+                        </a>
+                    </div>
+                    <div class="col-md text-center mb-3">
+                        <img src="{{ url_for('static', filename='img/base-de-datos.png') }}" alt="Base de Datos"
+                            class="img-fluid feature-icon"
+                            style="max-width: 60px; height: auto; transition: transform 0.3s ease;">
+                        <span class="d-block mt-3">BASE DE DATOS</span>
+                    </div>
+                    <div class="col-md text-center mb-3">
+                        <img src="{{ url_for('static', filename='img/brujula.png') }}" alt="Bienestar"
+                            class="img-fluid feature-icon"
+                            style="max-width: 60px; height: auto; transition: transform 0.3s ease;">
+                        <span class="d-block mt-3">BIENESTAR</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <style>
+            .feature-icon:hover {
+                transform: scale(1.1);
+                cursor: pointer;
+            }
+        </style>
+
+        <section class="investigations mt-4">
+            <h2>Investigaciones Innovadoras</h2>
+            <p>Descubre nuestros proyectos de investigación de vanguardia que están transformando el futuro.</p>
+            <ul class="list-unstyled">
+                <li><i class="fas fa-microscope"></i> Tecnología de punta</li>
+                <li><i class="fas fa-leaf"></i> Sostenibilidad ambiental</li>
+                <li><i class="fas fa-robot"></i> Inteligencia artificial</li>
+                <li><i class="fas fa-dna"></i> Biotecnología avanzada</li>
+            </ul>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-4 mb-3">
+                            <img src="{{ url_for('static', filename='img/investigaciones.jpeg') }}"
+                                alt="Investigación 1" class="img-fluid">
+                        </div>
+                        <div class="col-4 mb-3">
+                            <img src="{{ url_for('static', filename='img/investigaciones2.jpeg') }}"
+                                alt="Investigación 2" class="img-fluid">
+                        </div>
+
+
+                        <div class="row mt-3 justify-content-center">
+                            <div class="col-6 mb-3">
+                                <img src="{{ url_for('static', filename='img/investigaciones3.jpeg') }}"
+                                    alt="Investigación 3" class="img-fluid" style="width: 100%;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="list-group">
+                        <div class="list-group-item">Investigación sobre energías renovables en América Latina</div>
+                        <div class="list-group-item">Estudio de la biodiversidad en la Amazonía</div>
+                        <div class="list-group-item">Avances en inteligencia artificial aplicada a la educación</div>
+                        <div class="list-group-item">Impacto del cambio climático en los ecosistemas marinos</div>
+                        <div class="list-group-item">Desarrollo de nuevas terapias contra el cáncer</div>
+                    </div>
+                    <button class="btn btn-secondary mt-3">Ver más investigaciones</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="convenios-acreditaciones text-center mt-5">
+            <h2 class="mb-4">Convenios y acreditaciones</h2>
+            <p class="mb-4">Descubre nuestras alianzas estratégicas y reconocimientos internacionales que respaldan la
+                calidad de nuestra institución.</p>
+            <div class="btn-group mb-4">
+                <button class="btn btn-outline-primary active">Convenios</button>
+                <button class="btn btn-outline-primary">Acreditaciones</button>
+                <button class="btn btn-outline-primary">Reconocimientos</button>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <h5>Convenios Internacionales</h5>
+                    <p>Más de 50 acuerdos con universidades de prestigio mundial</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Acreditaciones</h5>
+                    <p>Certificados por organismos líderes en educación superior</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Reconocimientos</h5>
+                    <p>Top 10 en rankings latinoamericanos de innovación educativa</p>
+                </div>
+            </div>
+        </section>
+        <div class="text-center">
+            <img src="{{ url_for('static', filename='img/manos.jpeg') }}" alt="Acuerdos"
+                class="img-fluid rounded-circle" style="max-width: 70%; height: auto; object-fit: cover;">
+        </div>
+        </section>
+
+        <section class="latest-blog mt-5"
+            style="background-color: #e0e0e0; padding: 40px 0; width: 100%; position: relative; left: 0; right: 0;">
+            <div class="container text-center">
+                <h2 class="mb-4">Últimas entradas del blog</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-4 mb-4 d-flex justify-content-center">
+                        <div class="card h-100"
+                            style="border: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                            <img src="{{ url_for('static', filename='img/gentebiblio.jpeg') }}"
+                                alt="Estudiantes en biblioteca" class="card-img-top"
+                                style="height: 200px; object-fit: cover;">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">El impacto de la lectura en el rendimiento académico</h5>
+                                <p class="card-text flex-grow-1">Descubre cómo la lectura regular puede mejorar
+                                    significativamente tus resultados académicos y habilidades cognitivas.</p>
+                                <a href="#" class="btn btn-primary mt-auto"
+                                    style="transition: background-color 0.3s ease;">Leer más</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4 d-flex justify-content-center">
+                        <div class="card h-100"
+                            style="border: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                            <img src="{{ url_for('static', filename='img/estudiantesonrie.webp') }}"
+                                alt="Estudiante sonriente" class="card-img-top"
+                                style="height: 200px; object-fit: cover;">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Claves para mantener una actitud positiva en la universidad</h5>
+                                <p class="card-text flex-grow-1">Aprende estrategias efectivas para mantener una
+                                    mentalidad positiva y enfrentar los desafíos universitarios con optimismo.</p>
+                                <a href="#" class="btn btn-primary mt-auto"
+                                    style="transition: background-color 0.3s ease;">Leer más</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4 d-flex justify-content-center">
+                        <div class="card h-100"
+                            style="border: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                            <img src="{{ url_for('static', filename='img/et.jpg') }}"
+                                alt="Estudiantes trabajando en equipo" class="card-img-top"
+                                style="height: 200px; object-fit: cover;">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">La importancia del trabajo en equipo en la educación superior
+                                </h5>
+                                <p class="card-text flex-grow-1">Explora cómo la colaboración y el trabajo en equipo
+                                    pueden potenciar tu aprendizaje y prepararte para tu futura carrera profesional.</p>
+                                <a href="#" class="btn btn-primary mt-auto"
+                                    style="transition: background-color 0.3s ease;">Leer más</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-4">
+                    <button class="btn btn-secondary" style="transition: background-color 0.3s ease;">Ver todas las
+                        entradas</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="egresados mt-5">
+            <h2 class="mb-4">EGRESADOS</h2>
+            <div id="testimoniosCarousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active text-center">
+                        <p class="mb-4">"Mi experiencia en la universidad fue increíble."</p>
+                        <div class="egresado-info d-flex flex-column align-items-center justify-content-center">
+                            <div class="mb-3">
+                                <h5 class="mb-0">María Rodríguez</h5>
+                                <p class="text-muted">Graduada en Ingeniería</p>
+                            </div>
+                            <img src="{{ url_for('static', filename='img/personas.png') }}" alt="María Rodríguez"
+                                class="egresado-foto rounded-circle"
+                                style="width: 60px; height: 60px; object-fit: cover;">
+                        </div>
+                    </div>
+                    <div class="carousel-item text-center">
+                        <p class="mb-4">"La universidad me dio las herramientas necesarias para emprender mi propio
+                            negocio."</p>
+                        <div class="egresado-info d-flex flex-column align-items-center justify-content-center">
+                            <div class="mb-3">
+                                <h5 class="mb-0">Carlos Gómez</h5>
+                                <p class="text-muted">Graduado en Administración de Empresas</p>
+                            </div>
+                            <img src="{{ url_for('static', filename='img/personas.png') }}" alt="Carlos Gómez"
+                                class="egresado-foto rounded-circle"
+                                style="width: 60px; height: 60px; object-fit: cover;">
+                        </div>
+                    </div>
+                    <div class="carousel-item text-center">
+                        <p class="mb-4">"Estudiar aquí cambió mi vida."</p>
+                        <div class="egresado-info d-flex flex-column align-items-center justify-content-center">
+                            <div class="mb-3">
+                                <h5 class="mb-0">Ana Martínez</h5>
+                                <p class="text-muted">Graduada en Diseño Gráfico</p>
+                            </div>
+                            <img src="{{ url_for('static', filename='img/personas.png') }}" alt="Ana Martínez"
+                                class="egresado-foto rounded-circle"
+                                style="width: 60px; height: 60px; object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#testimoniosCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                    <span class="sr-only">Anterior</span>
+                </a>
+                <a class="carousel-control-next" href="#testimoniosCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                    <span class="sr-only">Siguiente</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="preguntas-frecuentes mt-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="{{ url_for('static', filename='img/preguntandose.avif') }}" alt="Preguntas Frecuentes"
+                            class="img-fluid rounded">
+                    </div>
+                    <div class="col-md-8">
+                        <h2 class="mb-4 text-center">Preguntas frecuentes</h2>
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse"
+                                            data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            ¿Cuáles son los requisitos de admisión?
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                    data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        Los requisitos de admisión varían según el programa, pero generalmente incluyen
+                                        certificado de bachillerato, examen de admisión y entrevista personal.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapseTwo" aria-expanded="false"
+                                            aria-controls="collapseTwo">
+                                            ¿Ofrecen becas o ayuda financiera?
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                    data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        Sí, ofrecemos diversas opciones de becas y ayuda financiera. Puedes consultar
+                                        más detalles en nuestra oficina de admisiones o en la sección de becas de
+                                        nuestro sitio web.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingThree">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapseThree" aria-expanded="false"
+                                            aria-controls="collapseThree">
+                                            ¿Cuánto duran los programas de estudio?
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                    data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        La duración de los programas varía. Los programas de pregrado suelen durar entre
+                                        4 y 5 años, mientras que los posgrados pueden durar de 1 a 3 años, dependiendo
+                                        de la especialidad.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="necesitas-mas-info mt-5">
+            <h3 class="mb-4">¿Necesitas más información?</h3>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Escribe tu pregunta aquí">
+                <div class="input-group-append">
+                    <button class="btn btn-primary">Más info</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-center text-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-3">
+                    <img src="{{ url_for('static', filename='img/LogoMOKTEC.webp') }}" alt="MOKTEC Logo"
+                        class="img-fluid rounded-circle" style="max-width: 150px;">
+                </div>
+                <div class="col-md-9">
+                    <p>MOKTEC: Innovación y excelencia en educación desde 1985</p>
+                    <p>Dirección: Av. Universidad 123, Ciudad de México</p>
+                    <p>Teléfono: (55) 1234-5678</p>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col">
+                    <h5>Connect with us</h5>
+                    <a href="#" class="btn btn-link text-light"><i class="fab fa-facebook"></i> Facebook</a>
+                    <a href="#" class="btn btn-link text-light"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="#" class="btn btn-link text-light"><i class="fab fa-x"></i> X</a>
+                    <a href="#" class="btn btn-link text-light"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
