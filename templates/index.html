@@ -24,13 +24,13 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#pregrados">Pregrados</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#ofertas">Ofertas académicas</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#docentes">Docentes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('pregrados') }}">Pregrados</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('ofertas') }}">Ofertas Académicas</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('docentes') }}">Docentes</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Gestión Información</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="#nosotros">Nosotros</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('nosotros') }}">Nosotros</a></li>
                     </ul>
                     <div class="input-group my-2 my-lg-0 ml-auto" style="max-width: 300px;">
                         <input type="text" class="form-control form-control-sm" placeholder="Buscar...">
@@ -49,8 +49,8 @@
                 <h1>MOKTEC</h1>
                 <p>Formando líderes para el futuro tecnológico</p>
                 <p>Descubre nuestros programas innovadores y únete a la revolución educativa</p>
-                <button class="btn btn-primary">INSCRÍBETE AHORA</button>
-                <a href="#programas" class="btn btn-outline-secondary ml-2">Explorar Programas</a>
+                <a href="{{ url_for('inscribete') }}" class="btn btn-primary">INSCRÍBETE AHORA</a>
+                <a href="{{ url_for('pregrados') }}" class="btn btn-outline-secondary ml-2">Explorar Programas</a>
             </div>
             <div class="col-md-6 text-right">
                 <img src="{{ url_for('static', filename='img/LogoMOKTEC.webp') }}" alt="MOKTEC Logo" class="img-fluid rounded"
@@ -69,10 +69,12 @@
                         <span class="d-block mt-3">REPORTES</span>
                     </div>
                     <div class="col-md text-center mb-3">
-                        <img src="{{ url_for('static', filename='img/libro.png') }}" alt="Biblioteca"
-                            class="img-fluid feature-icon"
-                            style="max-width: 60px; height: auto; transition: transform 0.3s ease;">
-                        <span class="d-block mt-3">BIBLIOTECA</span>
+                        <a href="{{ url_for('Biblioteca') }}" class="text-decoration-none">
+                            <img src="{{ url_for('static', filename='img/libro.png') }}" alt="Biblioteca"
+                                class="img-fluid feature-icon"
+                                style="max-width: 60px; height: auto; transition: transform 0.3s ease;">
+                            <span class="d-block mt-3">BIBLIOTECA</span>
+                        </a>
                     </div>
                     <div class="col-md text-center mb-3">
                         <a href="{{ url_for('login') }}" class="text-decoration-none">
@@ -83,16 +85,20 @@
                         </a>
                     </div>
                     <div class="col-md text-center mb-3">
-                        <img src="{{ url_for('static', filename='img/base-de-datos.png') }}" alt="Base de Datos"
-                            class="img-fluid feature-icon"
-                            style="max-width: 60px; height: auto; transition: transform 0.3s ease;">
-                        <span class="d-block mt-3">BASE DE DATOS</span>
+                        <a href="{{ url_for('BaseDatos') }}" class="text-decoration-none">
+                            <img src="{{ url_for('static', filename='img/base-de-datos.png') }}" alt="Base de Datos"
+                                class="img-fluid feature-icon"
+                                style="max-width: 60px; height: auto; transition: transform 0.3s ease;">
+                            <span class="d-block mt-3">BASE DE DATOS</span>
+                        </a>
                     </div>
                     <div class="col-md text-center mb-3">
-                        <img src="{{ url_for('static', filename='img/brujula.png') }}" alt="Bienestar"
-                            class="img-fluid feature-icon"
-                            style="max-width: 60px; height: auto; transition: transform 0.3s ease;">
-                        <span class="d-block mt-3">BIENESTAR</span>
+                        <a href="{{ url_for('bienestar') }}" class="text-decoration-none">
+                            <img src="{{ url_for('static', filename='img/brujula.png') }}" alt="Bienestar"
+                                class="img-fluid feature-icon"
+                                style="max-width: 60px; height: auto; transition: transform 0.3s ease;">
+                            <span class="d-block mt-3">BIENESTAR</span>
+                        </a>
                     </div>
                 </div>
             </div>

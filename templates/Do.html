@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOKTEC - Docentes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="C:/Users/omarb/OneDrive/Documentos/WEB AVANZADA/styles/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+    <header class="bg-light">
+        <div class="container text-center">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="{{ url_for('home') }}">
+                    <img src="{{ url_for('static', filename='img/LogoMOKTEC.webp') }}" alt="MOKTEC Logo"
+                        class="img-fluid rounded-circle" style="max-width: 120px;">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('pregrados') }}">Pregrados</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('ofertas') }}">Ofertas Académicas</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('docentes') }}">Docentes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Gestión Información</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('nosotros') }}">Nosotros</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mt-5">
+        <h2 class="text-center mb-4">Nuestros Docentes</h2>
+        <p class="text-center">Conoce a nuestros docentes altamente calificados y su preparación académica.</p>
+
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Dr. Juan Pérez</h5>
+                        <p class="card-text">Especialista en Programación y Desarrollo de Software.</p>
+                        <p><strong>Preparación Académica:</strong></p>
+                        <ul>
+                            <li>PhD en Ciencias de la Computación - Universidad Nacional</li>
+                            <li>Maestría en Desarrollo de Software - Universidad de los Andes</li>
+                            <li>Licenciatura en Ingeniería de Sistemas - Universidad del Valle</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Ing. María López</h5>
+                        <p class="card-text">Experta en Desarrollo Web y Diseño de Interfaces.</p>
+                        <p><strong>Preparación Académica:</strong></p>
+                        <ul>
+                            <li>Maestría en Diseño de Experiencia de Usuario - Universidad de Barcelona</li>
+                            <li>Licenciatura en Ingeniería de Sistemas - Universidad de los Andes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Lic. Carlos Gómez</h5>
+                        <p class="card-text">Especialista en Bases de Datos y Big Data.</p>
+                        <p><strong>Preparación Académica:</strong></p>
+                        <ul>
+                            <li>Maestría en Big Data - Universidad Politécnica de Madrid</li>
+                            <li>Licenciatura en Ingeniería de Sistemas - Universidad del Valle</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-center text-light mt-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-3">
+                    <img src="{{ url_for('static', filename='img/LogoMOKTEC.webp') }}" alt="MOKTEC Logo"
+                        class="img-fluid rounded-circle" style="max-width: 150px;">
+                </div>
+                <div class="col-md-9">
+                    <p>MOKTEC: Innovación y excelencia en educación desde 1985</p>
+                    <p>Dirección: Av. Universidad 123, Ciudad de México</p>
+                    <p>Teléfono: (55) 1234-5678</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+

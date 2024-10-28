@@ -1,5 +1,8 @@
 body {
     background-color: #e1e5e9; /* Color de fondo suave */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 .login-container {
@@ -64,3 +67,29 @@ body {
 .table tbody tr:nth-child(odd) {
     background-color: #e9ecef;
 }
+
+/* bienestar.css */
+
+/* Estilos específicos para la página de bienestar */
+.carousel-item img {
+    width: 100%; /* Asegura que la imagen ocupe todo el ancho */
+    height: 400px; /* Establece una altura fija para todas las imágenes */
+    object-fit: cover; /* Mantiene la proporción de la imagen */
+}
+
+.carousel-caption {
+    color: black; /* Cambia el color del texto a negro */
+}
+
+/* styles.css */
+
+/* Estilos generales */
+.navbar {
+    margin-bottom: 20px;
+}
+
+footer {
+    padding: 20px 0;
+}
+
+/* Otros estilos generales que necesites */

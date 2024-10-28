@@ -7,13 +7,43 @@ app = Flask(__name__)
 app.secret_key = 'tu_clave_secreta' 
 
 # Credenciales del administrador
+
 ADMIN_USERNAME = "admin"
 ADMIN_PASSWORD = "maestro"  
 
 @app.route('/')  # Define la ruta principal
 def home():
-    return render_template('index.html')  # Renderiza la plantilla de inicio
+    return render_template('index.html')  
+# Renderiza la plantilla de inicio
+@app.route('/pregrados')  # Define la ruta para la página de Pregrados
+def pregrados():
+    return render_template('Pregrados.html') 
+@app.route('/nosotros')  # Define la ruta para la página "Nosotros"
+def nosotros():
+    return render_template('Nosotros.html')
 
+@app.route('/ofertas')  # Define la ruta para la página de Ofertas Académicas
+def ofertas():
+    return render_template('Ofertas.html') 
+
+@app.route('/docentes')  # Define la ruta para la página de Ofertas Académicas
+def docentes():
+    return render_template('Do.html')# Renderiza la plantilla Ofertas.html# Renderiza la plantilla Nosotros.html
+
+@app.route('/inscribete')  # Define la ruta para la página de Ofertas Académicas
+def inscribete():
+    return render_template('inscribete.html')
+
+@app.route('/bienestar')  # Define la ruta para la página de Bienestar
+def bienestar():
+    return render_template('bienestar.html')
+@app.route('/BaseDatos')  # Define la ruta para la página de Base de Datos
+def BaseDatos():
+    return render_template('BaseDatos.html')  # Renderiza la plantilla BaseDatos.html# Renderiza la plantilla bienestar.html
+
+@app.route('/Biblioteca')  # Define la ruta para la página de Biblioteca
+def Biblioteca():
+    return render_template('Biblioteca.html')  # Renderiza la plantilla Biblioteca.html
 @app.route('/login', methods=['GET', 'POST'])  # Define la ruta para el inicio de sesión
 def login():
     if request.method == 'GET':
