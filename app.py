@@ -370,7 +370,7 @@ def notas():
     connection = get_db_connection()
     cursor = connection.cursor()
     cursor.execute("""
-        SELECT n.id, u.username AS estudiante, a.nombre AS asignatura, n.nota
+        SELECT n.id, u.username AS estudiante, a.nombre AS asignatura, n.nota, u.semestre
         FROM notas n
         JOIN users u ON n.estudiante_id = u.id
         JOIN asignaturas a ON n.asignatura_id = a.id
