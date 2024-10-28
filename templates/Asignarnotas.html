@@ -61,11 +61,20 @@
                 <h1>Asignar Notas</h1>
                 <form method="POST" action="{{ url_for('asignar_notas') }}">
                     <div class="form-group">
+                        <label for="semestre">Semestre</label>
+                        <select class="form-control" id="semestre" name="semestre" required onchange="filterStudents()">
+                            <option value="" disabled selected>Seleccione un semestre</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="estudiante_id">Estudiante</label>
                         <select class="form-control" id="estudiante_id" name="estudiante_id" required>
                             <option value="" disabled selected>Seleccione un estudiante</option>
                             {% for estudiante in estudiantes %}
-                            <option value="{{ estudiante[0] }}">{{ estudiante[1] }}</option>
+                            <option value="{{ estudiante[0] }}" data-semestre="{{ estudiante[2] }}">{{ estudiante[1] }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -89,6 +98,25 @@
     </div>
 
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        function filterStudents() {
+            const semestreSelect = document.getElementById('semestre');
+            const selectedSemestre = semestreSelect.value;
+            const studentSelect = document.getElementById('estudiante_id');
+            const options = studentSelect.options;
+
+            for (let i = 0; i < options.length; i++) {
+                const option = options[i];
+                const studentSemestre = option.getAttribute('data-semestre');
+
+                if (selectedSemestre === "" || studentSemestre === selectedSemestre) {
+                    option.style.display = 'block'; // Mostrar opción
+                } else {
+                    option.style.display = 'none'; // Ocultar opción
+                }
+            }
+        }
+    </script>
 </body>
 
 </html>

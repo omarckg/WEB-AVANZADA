@@ -86,23 +86,29 @@ def estudiante():
 @app.route('/register', methods=['POST'])  # Define la ruta para registrar un nuevo usuario
 def register():
     username = request.form['username']
+    email = request.form['email']  # Obtener el correo electrónico
+    documento_identidad = request.form['documento_identidad']  # Obtener el documento de identidad
+    tipo_documento = request.form['tipo_documento']  # Obtener el tipo de documento
     password = request.form['password']
     rol = request.form['rol']  # Obtener el rol del formulario
+    semestre = request.form.get('semestre')  # Obtener el semestre del formulario, puede ser None si no se selecciona
+
     hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
 
     connection = get_db_connection()
     cursor = connection.cursor()
 
     try:
-        # Inserta en la tabla 'users' incluyendo el rol
-        cursor.execute("INSERT INTO users (username, password, rol) VALUES (%s, %s, %s)", (username, hashed_password, rol))
+        # Inserta en la tabla 'users' incluyendo el rol, semestre, documento de identidad y tipo de documento
+        cursor.execute("INSERT INTO users (username, email, documento_identidad, tipo_documento, password, rol, semestre) VALUES (%s, %s, %s, %s, %s, %s, %s)", 
+                       (username, email, documento_identidad, tipo_documento, hashed_password, rol, semestre))
         connection.commit()
 
         # Almacenar el estado de sesión para el nuevo usuario
         session['logged_in'] = True  # Marcar al usuario como autenticado
         return redirect(url_for('admin'))  # Redirigir a la página de administración después del registro exitoso
-    except mysql.connector.Error as err:
-        return f"Error: {err}"
+    except Exception as e:
+        return f"Error: {e}"
     finally:
         cursor.close()
         connection.close()
@@ -114,7 +120,7 @@ def register_page():
 @app.route('/logout')  # Define la ruta para cerrar sesión
 def logout():
     session.pop('logged_in', None)  # Elimina el estado de sesión
-    return redirect(url_for('home'))  # Redirige a la página de inicio
+    return redirect(url_for('login'))  # Redirige a la página de inicio
 
 @app.route('/users', methods=['GET'])
 def list_users():
@@ -344,8 +350,8 @@ def asignar_notas():
         connection.close()
         return redirect(url_for('notas'))  # Redirigir a la página de notas después de asignar una nota
     
-    # Obtener la lista de estudiantes y asignaturas
-    cursor.execute("SELECT id, username FROM users WHERE rol = 'estudiante'")
+    # Obtener la lista de estudiantes y asignaturas, incluyendo el semestre
+    cursor.execute("SELECT id, username, semestre FROM users WHERE rol = 'estudiante'")
     estudiantes = cursor.fetchall()
     
     cursor.execute("SELECT id, nombre FROM asignaturas")

@@ -20,30 +20,48 @@
             <form id="registrationForm" action="{{ url_for('register') }}" method="POST" class="bg-light p-3 rounded">
                 <div class="form-group">
                     <label for="username"><i class="fas fa-user"></i> Usuario</label>
-                    <input type="text" class="form-control" name="username" id="username"
-                        placeholder="Nombre de usuario" required>
+                    <input type="text" class="form-control" name="username" id="username" placeholder="Nombre de usuario" required>
                 </div>
                 <div class="form-group">
                     <label for="email"><i class="fas fa-envelope"></i> Correo</label>
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Correo electrónico"
-                        required>
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Correo electrónico" required>
+                </div>
+                <div class="form-group">
+                    <label for="documento_identidad"><i class="fas fa-id-card"></i> Documento de Identidad</label>
+                    <input type="text" class="form-control" name="documento_identidad" id="documento_identidad" placeholder="Número de documento" required>
+                </div>
+                <div class="form-group">
+                    <label for="tipo_documento"><i class="fas fa-user-tag"></i> Tipo de Documento</label>
+                    <select class="form-control" name="tipo_documento" id="tipo_documento" required>
+                        <option value="" disabled selected>Seleccionar tipo de documento</option>
+                        <option value="cedula">Cédula de Ciudadanía</option>
+                        <option value="tarjeta">Tarjeta de Identidad</option>
+                        <option value="pasaporte">Pasaporte</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="password"><i class="fas fa-lock"></i> Contraseña</label>
-                    <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña"
-                        required>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" required>
                 </div>
                 <div class="form-group">
                     <label for="rol"><i class="fas fa-user-tag"></i> Rol</label>
-                    <select class="form-control" name="rol" id="rol" required>
+                    <select class="form-control" name="rol" id="rol" required onchange="toggleSemestreField()">
                         <option value="" disabled selected>Seleccionar rol</option>
                         <option value="admin">Administrador</option>
                         <option value="estudiante">Estudiante</option>
                         <option value="profesor">Profesor</option> <!-- Nuevo rol agregado -->
                     </select>
                 </div>
-                <button type="submit" class="btn btn-secondary btn-block"><i class="fas fa-user-plus"></i>
-                    Registrar</button>
+                <div class="form-group" id="semestreField" style="display: none;">
+                    <label for="semestre"><i class="fas fa-calendar-alt"></i> Semestre</label>
+                    <select class="form-control" name="semestre" id="semestre" required>
+                        <option value="" disabled selected>Seleccionar semestre</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-secondary btn-block"><i class="fas fa-user-plus"></i> Registrar</button>
             </form>
         </div>
     </div>
@@ -55,6 +73,19 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function toggleSemestreField() {
+            const rolSelect = document.getElementById('rol');
+            const semestreField = document.getElementById('semestreField');
+            
+            if (rolSelect.value === 'estudiante') {
+                semestreField.style.display = 'block'; // Mostrar campo de semestre
+            } else {
+                semestreField.style.display = 'none'; // Ocultar campo de semestre
+            }
+        }
+    </script>
 
 </body>
 
