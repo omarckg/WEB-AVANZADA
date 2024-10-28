@@ -227,7 +227,7 @@ def perfil_estudiante():
     cursor = connection.cursor()
     cursor.execute("SELECT username, id, rol, password FROM users WHERE rol = %s", ('estudiante',))
     estudiante = cursor.fetchone()
-    cursor.close()
+    
     connection.close()
     
     if estudiante:
