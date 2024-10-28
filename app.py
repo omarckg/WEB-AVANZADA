@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 from db_config import get_db_connection
 import bcrypt
 import os
@@ -64,6 +64,8 @@ def login():
 
     if user and bcrypt.checkpw(password.encode('utf-8'), user[2].encode('utf-8')):  # Verifica la contraseña
         session['logged_in'] = True  # Almacenar el estado de sesión
+        session['username'] = username  # Almacena el nombre de usuario en la sesión
+        session['user_id'] = user[0]  # Almacena el ID del usuario en la sesión
         if user[3] == 'estudiante':  # Verificar el rol del usuario
             return redirect(url_for('estudiante'))  # Redirigir a la función estudiante
         elif user[3] == 'admin':  # Verificar si el rol es admin
@@ -414,23 +416,35 @@ def asignaturas_estudiante():
 def notas_estudiante():
     if not session.get('logged_in'):
         return redirect(url_for('home'))
-    
-    username = session.get('username')
-    
+
+    username = session.get('username')  # Obtener el nombre de usuario del estudiante en sesión
     connection = get_db_connection()
     cursor = connection.cursor()
+
+    # Modificar la consulta para obtener las notas del estudiante actual
     cursor.execute("""
-        SELECT n.id, a.nombre, n.nota
+        SELECT n.id, a.nombre AS asignatura, n.nota
         FROM notas n
         JOIN asignaturas a ON n.asignatura_id = a.id
-        JOIN users e ON n.estudiante_id = e.id
-        WHERE e.username = %s
+        JOIN users u ON n.estudiante_id = u.id
+        WHERE u.username = %s
     """, (username,))
     notas = cursor.fetchall()
+
+    # Verifica si se obtuvieron notas
+    print(f"Notas obtenidas: {notas}")  # Para depuración
+
+    # Calcular el promedio de las notas
+    if notas:
+        total_notas = sum(nota[2] for nota in notas)  # Sumar las notas
+        promedio = total_notas / len(notas)  # Calcular el promedio
+    else:
+        promedio = 0  # Si no hay notas, el promedio es 0
+
     cursor.close()
     connection.close()
-    
-    return render_template('Notasestudiante.html', notas=notas)
+
+    return render_template('Notasestudiante.html', notas=notas, promedio=promedio)
 
 @app.route('/buscar_asignaturas', methods=['GET'])
 def buscar_asignaturas():
@@ -507,7 +521,9 @@ def mostrar_notas():
     cursor.close()
     connection.close()
     
-    return render_template('NotasEstudiante.html', notas=notas)
+    return render_template('Notasestudiante.html', notas=notas)
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

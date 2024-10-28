@@ -40,27 +40,43 @@
         <h2 class="text-center mb-4">Base de Datos de Artículos de Investigación</h2>
 
         <nav class="nav nav-pills flex-column flex-sm-row mb-4">
-            <a class="flex-sm-fill text-sm-center nav-link active" href="#editorial1">Springer</a>
-            <a class="flex-sm-fill text-sm-center nav-link" href="#editorial2">Elsevier</a>
-            <a class="flex-sm-fill text-sm-center nav-link" href="#editorial3">Wiley</a>
-            <a class="flex-sm-fill text-sm-center nav-link" href="#editorial4">Taylor & Francis</a>
+            <a class="flex-sm-fill text-sm-center nav-link" href="#" onclick="toggleEditorial('editorial1')">Springer</a>
+            <a class="flex-sm-fill text-sm-center nav-link" href="#" onclick="toggleEditorial('editorial2')">Elsevier</a>
+            <a class="flex-sm-fill text-sm-center nav-link" href="#" onclick="toggleEditorial('editorial3')">Wiley</a>
+            <a class="flex-sm-fill text-sm-center nav-link" href="#" onclick="toggleEditorial('editorial4')">Taylor & Francis</a>
         </nav>
 
-        <div id="editorial1" class="mb-4">
+        <div id="editorial1" class="mb-4" style="display:none;">
             <h5>Springer</h5>
             <p>Springer es una de las editoriales más grandes del mundo, conocida por su amplia gama de revistas científicas y libros en diversas disciplinas, incluyendo ciencias naturales, ingeniería y medicina.</p>
+            <p><strong>Áreas de Especialización:</strong> Biología, Química, Física, Ingeniería, entre otros.</p>
+            <p><strong>Revistas Destacadas:</strong> Nature, SpringerLink.</p>
+            <p><strong>Acceso Abierto:</strong> Ofrecen opciones para publicar en acceso abierto.</p>
+            <p>Más información sobre Springer...</p>
         </div>
-        <div id="editorial2" class="mb-4">
+        <div id="editorial2" class="mb-4" style="display:none;">
             <h5>Elsevier</h5>
             <p>Elsevier es una editorial líder en el ámbito de la investigación científica, ofreciendo una vasta colección de revistas y libros en áreas como la salud, la ciencia y la tecnología.</p>
+            <p><strong>Impacto de las Revistas:</strong> Muchas de sus revistas tienen un alto factor de impacto, como "The Lancet" y "Cell".</p>
+            <p><strong>Recursos Adicionales:</strong> Proporciona acceso a bases de datos como Scopus y ScienceDirect.</p>
+            <p><strong>Iniciativas de Sostenibilidad:</strong> Comprometidos con la sostenibilidad en la investigación.</p>
+            <p>Más información sobre Elsevier...</p>
         </div>
-        <div id="editorial3" class="mb-4">
+        <div id="editorial3" class="mb-4" style="display:none;">
             <h5>Wiley</h5>
             <p>Wiley es una editorial global que publica revistas y libros en diversas áreas, incluyendo ciencias sociales, ciencias de la vida y tecnología, con un fuerte enfoque en la investigación académica.</p>
+            <p><strong>Colaboraciones:</strong> Trabaja con sociedades científicas y organizaciones académicas.</p>
+            <p><strong>Programas de Capacitación:</strong> Ofrecen cursos y recursos para investigadores y académicos.</p>
+            <p><strong>Publicaciones de Libros:</strong> Publican una amplia variedad de libros académicos y de texto.</p>
+            <p>Más información sobre Wiley...</p>
         </div>
-        <div id="editorial4" class="mb-4">
+        <div id="editorial4" class="mb-4" style="display:none;">
             <h5>Taylor & Francis</h5>
             <p>Taylor & Francis es una editorial internacional que publica una amplia gama de revistas académicas y libros en diversas disciplinas, incluyendo humanidades, ciencias sociales y ciencias aplicadas.</p>
+            <p><strong>Diversidad de Temas:</strong> Abordan temas desde humanidades hasta ciencias aplicadas.</p>
+            <p><strong>Revistas de Acceso Abierto:</strong> Ofrecen varias revistas de acceso abierto para autores.</p>
+            <p><strong>Eventos y Conferencias:</strong> Organizan y patrocinan conferencias y eventos académicos.</p>
+            <p>Más información sobre Taylor & Francis...</p>
         </div>
     </main>
 
@@ -83,6 +99,26 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+    function toggleEditorial(editorialId) {
+        // Ocultar todas las editoriales
+        var editoriales = ['editorial1', 'editorial2', 'editorial3', 'editorial4'];
+        editoriales.forEach(function(id) {
+            var editorial = document.getElementById(id);
+            if (id !== editorialId) {
+                editorial.style.display = "none";
+            }
+        });
+
+        // Alternar la visibilidad de la editorial seleccionada
+        var selectedEditorial = document.getElementById(editorialId);
+        if (selectedEditorial.style.display === "none") {
+            selectedEditorial.style.display = "block";
+        } else {
+            selectedEditorial.style.display = "none";
+        }
+    }
+    </script>
 </body>
 
 </html>

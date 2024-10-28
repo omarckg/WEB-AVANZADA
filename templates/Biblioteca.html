@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="C:/Users/omarb/OneDrive/Documentos/WEB AVANZADA/styles/styles.css"> <!-- Estilos generales -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .editorial-info {
+            display: none; /* Ocultar la información de las editoriales por defecto */
+        }
+    </style>
 </head>
 
 <body>
@@ -41,19 +46,64 @@
         <h2 class="text-center mb-4">Editoriales de Libros</h2>
 
         <nav class="nav nav-pills flex-column flex-sm-row mb-4">
-            <a class="flex-sm-fill text-sm-center nav-link active" href="#editorial1">Cambridge University Press</a>
-            <a class="flex-sm-fill text-sm-center nav-link" href="#editorial2">Oxford University Press</a>
-            <a class="flex-sm-fill text-sm-center nav-link" href="#editorial3">SAGE Publications</a>
-            <a class="flex-sm-fill text-sm-center nav-link" href="#editorial4">Springer Nature</a>
-            <a class="flex-sm-fill text-sm-center nav-link" href="#editorial5">Routledge</a>
-            <a class="flex-sm-fill text-sm-center nav-link" href="#editorial6">McGraw-Hill Education</a>
-            <a class="flex-sm-fill text-sm-center nav-link" href="#editorial7">Palgrave Macmillan</a>
+            <a class="flex-sm-fill text-sm-center nav-link" href="#" onclick="toggleInfo('editorial1')">Cambridge University Press</a>
+            <a class="flex-sm-fill text-sm-center nav-link" href="#" onclick="toggleInfo('editorial2')">Oxford University Press</a>
+            <a class="flex-sm-fill text-sm-center nav-link" href="#" onclick="toggleInfo('editorial3')">SAGE Publications</a>
+            <a class="flex-sm-fill text-sm-center nav-link" href="#" onclick="toggleInfo('editorial4')">Springer Nature</a>
+            <a class="flex-sm-fill text-sm-center nav-link" href="#" onclick="toggleInfo('editorial5')">Routledge</a>
+            <a class="flex-sm-fill text-sm-center nav-link" href="#" onclick="toggleInfo('editorial6')">McGraw-Hill Education</a>
+            <a class="flex-sm-fill text-sm-center nav-link" href="#" onclick="toggleInfo('editorial7')">Palgrave Macmillan</a>
         </nav>
 
-        <div id="editorial1" class="mb-4">
+        <div id="editorial1" class="editorial-info">
             <h5>Cambridge University Press</h5>
-            <p>Cambridge University Press es una de las editoriales académicas más antiguas
-</div>
+            <p>Cambridge University Press es una de las editoriales más antiguas y respetadas del mundo, conocida por su compromiso con la investigación y la educación. Publica libros y revistas en una amplia gama de disciplinas, incluyendo ciencias sociales, humanidades, y ciencias naturales.</p>
+            <p><strong>Fundada:</strong> 1534</p>
+            <p><strong>Ubicación:</strong> Cambridge, Reino Unido</p>
+            <p><strong>Website:</strong> <a href="https://www.cambridge.org" target="_blank">cambridge.org</a></p>
+        </div>
+        <div id="editorial2" class="editorial-info">
+            <h5>Oxford University Press</h5>
+            <p>Oxford University Press es la editorial universitaria más grande del mundo y publica una amplia variedad de libros académicos, de referencia y educativos. Su misión es promover el conocimiento y la educación a través de la publicación de obras de alta calidad.</p>
+            <p><strong>Fundada:</strong> 1586</p>
+            <p><strong>Ubicación:</strong> Oxford, Reino Unido</p>
+            <p><strong>Website:</strong> <a href="https://www.oup.com" target="_blank">oup.com</a></p>
+        </div>
+        <div id="editorial3" class="editorial-info">
+            <h5>SAGE Publications</h5>
+            <p>SAGE Publications es una editorial independiente que se especializa en la publicación de libros y revistas en ciencias sociales, humanidades, y ciencias de la salud. Es conocida por su enfoque en la investigación y la innovación en la educación.</p>
+            <p><strong>Fundada:</strong> 1965</p>
+            <p><strong>Ubicación:</strong> Thousand Oaks, California, EE. UU.</p>
+            <p><strong>Website:</strong> <a href="https://www.sagepub.com" target="_blank">sagepub.com</a></p>
+        </div>
+        <div id="editorial4" class="editorial-info">
+            <h5>Springer Nature</h5>
+            <p>Springer Nature es una de las editoriales más grandes del mundo en el ámbito de la investigación científica y técnica. Publica libros, revistas y recursos digitales en diversas disciplinas, incluyendo ciencias naturales, ingeniería y medicina.</p>
+            <p><strong>Fundada:</strong> 2015 (fusión de Springer Science+Business Media y Nature Publishing Group)</p>
+            <p><strong>Ubicación:</strong> Berlín, Alemania</p>
+            <p><strong>Website:</strong> <a href="https://www.springernature.com" target="_blank">springernature.com</a></p>
+        </div>
+        <div id="editorial5" class="editorial-info">
+            <h5>Routledge</h5>
+            <p>Routledge es una editorial académica que se especializa en humanidades y ciencias sociales. Publica libros y revistas de investigación, así como textos educativos, y es conocida por su compromiso con la calidad y la innovación.</p>
+            <p><strong>Fundada:</strong> 1836</p>
+            <p><strong>Ubicación:</strong> Londres, Reino Unido</p>
+            <p><strong>Website:</strong> <a href="https://www.routledge.com" target="_blank">routledge.com</a></p>
+        </div>
+        <div id="editorial6" class="editorial-info">
+            <h5>McGraw-Hill Education</h5>
+            <p>McGraw-Hill Education es una de las principales editoriales de materiales educativos y de aprendizaje. Ofrece una amplia gama de libros de texto, recursos digitales y soluciones de aprendizaje para estudiantes y educadores.</p>
+            <p><strong>Fundada:</strong> 1888</p>
+            <p><strong>Ubicación:</strong> Nueva York, EE. UU.</p>
+            <p><strong>Website:</strong> <a href="https://www.mheducation.com" target="_blank">mheducation.com</a></p>
+        </div>
+        <div id="editorial7" class="editorial-info">
+            <h5>Palgrave Macmillan</h5>
+            <p>Palgrave Macmillan es una editorial académica que publica libros y revistas en ciencias sociales, humanidades y negocios. Es conocida por su enfoque en la investigación de alta calidad y su compromiso con la educación.</p>
+            <p><strong>Fundada:</strong> 2000 (como Palgrave, parte de Macmillan Publishers)</p>
+            <p><strong>Ubicación:</strong> Londres, Reino Unido</p>
+            <p><strong>Website:</strong> <a href="https://www.palgrave.com" target="_blank">palgrave.com</a></p>
+        </div>
     </main>
 
     <footer class="bg-dark text-center text-light mt-5">
@@ -75,6 +125,17 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function toggleInfo(editorialId) {
+            const infoDiv = document.getElementById(editorialId);
+            const isVisible = infoDiv.style.display === 'block';
+            // Ocultar todas las editoriales
+            const allInfoDivs = document.querySelectorAll('.editorial-info');
+            allInfoDivs.forEach(div => div.style.display = 'none');
+            // Mostrar la editorial seleccionada
+            infoDiv.style.display = isVisible ? 'none' : 'block';
+        }
+    </script>
 </body>
 
 </html>

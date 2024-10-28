@@ -67,7 +67,7 @@
                 <label for="comentarios">Comentarios Adicionales</label>
                 <textarea class="form-control" id="comentarios" name="comentarios" rows="3"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Enviar Inscripción</button>
+            <button type="submit" class="btn btn-primary" onclick="mostrarMensaje()">Enviar Inscripción</button>
         </form>
     </main>
 
@@ -90,6 +90,14 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+    function mostrarMensaje() {
+        alert("¡Gracias por inscribirte!");
+        setTimeout(function() {
+            window.location.href = "{{ url_for('home') }}";
+        }, 2000);
+    }
+    </script>
 </body>
 
 </html>
