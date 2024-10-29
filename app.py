@@ -53,7 +53,9 @@ def login():
 
     # Verifica si el usuario es el administrador
     if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
-        session['logged_in'] = True  # Marca al usuario como autenticado
+        session['logged_in'] = True
+        session['rol'] = 'admin'  # Almacena el rol en la sesión
+        # Marca al usuario como autenticado
         return redirect(url_for('admin'))  # Redirige a la página de administración
 
     connection = get_db_connection()
@@ -65,11 +67,12 @@ def login():
     if user and bcrypt.checkpw(password.encode('utf-8'), user[2].encode('utf-8')):  # Verifica la contraseña
         session['logged_in'] = True  # Almacenar el estado de sesión
         session['username'] = username  # Almacena el nombre de usuario en la sesión
-        session['user_id'] = user[0]  # Almacena el ID del usuario en la sesión
+        session['user_id'] = user[0]
+        session['rol'] = user[3] # Almacena el ID del usuario en la sesión
         if user[3] == 'estudiante':  # Verificar el rol del usuario
             return redirect(url_for('estudiante'))  # Redirigir a la función estudiante
         elif user[3] == 'admin':  # Verificar si el rol es admin
-            return redirect(url_for('perfil_admin'))  # Redirigir a la función perfil_admin
+            return redirect(url_for('admin'))  # Redirigir a la función perfil_admin
         elif user[3] == 'profesor':  # Verificar si el rol es profesor
             return redirect(url_for('profesor'))  # Redirigir a la función profesor
     else:
@@ -204,77 +207,95 @@ def admin():
 @app.route('/perfil_admin')  # Define la ruta para el perfil del administrador
 def perfil_admin():
     if not session.get('logged_in'):
-        return redirect(url_for('home'))
-    
-    # Obtener la información del perfil del administrador desde la base de datos
+        return redirect(url_for('home'))  # Redirige a la página de inicio si no está autenticado
+
+    # Obtener la información del administrador desde la sesión
+    username = session.get('username')
+    user_id = session.get('user_id')
+    rol = session.get('rol')
+
+    # Puedes obtener más información de la base de datos si es necesario
     connection = get_db_connection()
     cursor = connection.cursor()
-    cursor.execute("SELECT username, id, rol, password FROM users WHERE rol = %s", ('admin',))
-    admin = cursor.fetchone()
+    cursor.execute("SELECT email, documento_identidad, tipo_documento FROM users WHERE id = %s", (user_id,))
+    admin_info = cursor.fetchone()
     cursor.close()
     connection.close()
-    
-    if admin:
-        admin_info = {
-            'nombre': admin[0],
-            'id': admin[1],
-            'rol': admin[2],
-            'contraseña': admin[3]
+
+    if admin_info:
+        admin_data = {
+            'nombre': username,  # Usar el nombre de usuario almacenado en la sesión
+            'id': user_id,
+            'rol': rol,  # Asegúrate de que el rol se incluya aquí
+            'email': admin_info[0],
+            'documento_identidad': admin_info[1],
+            'tipo_documento': admin_info[2]
         }
-        return render_template('Perfiladmin.html', admin=admin_info)
+        return render_template('Perfiladmin.html', admin=admin_data)
     else:
         return "Perfil del administrador no encontrado"
 
 @app.route('/perfil_estudiante')
 def perfil_estudiante():
     if not session.get('logged_in'):
-        return redirect(url_for('home'))
-    
-    # Obtener la información del estudiante desde la base de datos
+        return redirect(url_for('home'))  # Redirige a la página de inicio si no está autenticado
+
+    # Obtener la información del estudiante desde la sesión
+    username = session.get('username')
+    user_id = session.get('user_id')
+    rol = session.get('rol')
+
+    # Puedes obtener más información de la base de datos si es necesario
     connection = get_db_connection()
     cursor = connection.cursor()
-    cursor.execute("SELECT username, id, rol, password FROM users WHERE rol = %s", ('estudiante',))
-    estudiante = cursor.fetchone()
-    
+    cursor.execute("SELECT email, documento_identidad, tipo_documento FROM users WHERE id = %s", (user_id,))
+    estudiante_info = cursor.fetchone()
+    cursor.close()
     connection.close()
-    
-    if estudiante:
-        estudiante_info = {
-            'nombre': estudiante[0],
-            'id': estudiante[1],
-            'rol': estudiante[2],
-            'contraseña': estudiante[3]
+
+    if estudiante_info:
+        estudiante_data = {
+            'username': username,
+            'id': user_id,
+            'rol': rol,
+            'email': estudiante_info[0],
+            'documento_identidad': estudiante_info[1],
+            'tipo_documento': estudiante_info[2]
         }
-        return render_template('Perfilestudiante.html', estudiante=estudiante_info)
+        return render_template('PerfilEstudiante.html', estudiante=estudiante_data)
     else:
-        return "Estudiante no encontrado"
+        return "Información del estudiante no encontrada"
 
 @app.route('/perfil_profesor')
 def perfil_profesor():
     if not session.get('logged_in'):
-        return redirect(url_for('home'))
-    
-    # Obtener la información del profesor desde la base de datos
+        return redirect(url_for('home'))  # Redirige a la página de inicio si no está autenticado
+
+    # Obtener la información del profesor desde la sesión
+    user_id = session.get('user_id')
+    username = session.get('username')
+    rol = session.get('rol')
+
+    # Puedes obtener más información de la base de datos si es necesario
     connection = get_db_connection()
     cursor = connection.cursor()
-    cursor.execute("SELECT username, id, rol, password FROM users WHERE rol = %s", ('profesor',))
-    profesor = cursor.fetchone()
-    
-    # Asegúrate de leer todos los resultados antes de cerrar el cursor
-    cursor.fetchall()
+    cursor.execute("SELECT email, documento_identidad, tipo_documento FROM users WHERE id = %s", (user_id,))
+    profesor_info = cursor.fetchone()
     cursor.close()
     connection.close()
-    
-    if profesor:
-        profesor_info = {
-            'nombre': profesor[0],
-            'id': profesor[1],
-            'rol': profesor[2],
-            'contraseña': profesor[3]
+
+    if profesor_info:
+        profesor_data = {
+            'nombre': username,  # Usar el nombre de usuario almacenado en la sesión
+            'id': user_id,
+            'rol': rol,  # Asegúrate de que el rol se incluya aquí
+            'email': profesor_info[0],
+            'documento_identidad': profesor_info[1],
+            'tipo_documento': profesor_info[2]
         }
-        return render_template('Perfilprofesor.html', profesor=profesor_info)
+        return render_template('Perfilprofesor.html', profesor=profesor_data)
     else:
-        return "Profesor no encontrado"
+        return "Información del profesor no encontrada"
 
 @app.route('/asignaturas')
 def asignaturas():
