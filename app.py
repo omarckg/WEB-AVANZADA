@@ -13,41 +13,41 @@ ADMIN_PASSWORD = "maestro"
 
 @app.route('/')  # Define la ruta principal
 def home():
-    return render_template('index.html')  
+    return render_template('LandinPage/index.html')  
 # Renderiza la plantilla de inicio
 @app.route('/pregrados')  # Define la ruta para la página de Pregrados
 def pregrados():
-    return render_template('Pregrados.html') 
+    return render_template('LandinPage/Pregrados.html') 
 @app.route('/nosotros')  # Define la ruta para la página "Nosotros"
 def nosotros():
-    return render_template('Nosotros.html')
+    return render_template('LandinPage/Nosotros.html')
 
 @app.route('/ofertas')  # Define la ruta para la página de Ofertas Académicas
 def ofertas():
-    return render_template('Ofertas.html') 
+    return render_template('LandinPage/Ofertas.html') 
 
 @app.route('/docentes')  # Define la ruta para la página de Ofertas Académicas
 def docentes():
-    return render_template('Do.html')# Renderiza la plantilla Ofertas.html# Renderiza la plantilla Nosotros.html
+    return render_template('LandinPage/Do.html')# Renderiza la plantilla Ofertas.html# Renderiza la plantilla Nosotros.html
 
 @app.route('/inscribete')  # Define la ruta para la página de Ofertas Académicas
 def inscribete():
-    return render_template('inscribete.html')
+    return render_template('LandinPage/inscribete.html')
 
 @app.route('/bienestar')  # Define la ruta para la página de Bienestar
 def bienestar():
-    return render_template('bienestar.html')
+    return render_template('LandinPage/bienestar.html')
 @app.route('/BaseDatos')  # Define la ruta para la página de Base de Datos
 def BaseDatos():
-    return render_template('BaseDatos.html')  # Renderiza la plantilla BaseDatos.html# Renderiza la plantilla bienestar.html
+    return render_template('LandinPage/BaseDatos.html')  # Renderiza la plantilla BaseDatos.html# Renderiza la plantilla bienestar.html
 
 @app.route('/Biblioteca')  # Define la ruta para la página de Biblioteca
 def Biblioteca():
-    return render_template('Biblioteca.html')  # Renderiza la plantilla Biblioteca.html
+    return render_template('LandinPage/Biblioteca.html')  # Renderiza la plantilla Biblioteca.html
 @app.route('/login', methods=['GET', 'POST'])  # Define la ruta para el inicio de sesión
 def login():
     if request.method == 'GET':
-        return render_template('login.html')  # Renderiza la página de inicio de sesión
+        return render_template('Gestion_de_informacion/login.html')  # Renderiza la página de inicio de sesión
     username = request.form['username']
     password = request.form['password']
 
@@ -80,13 +80,13 @@ def login():
 
 @app.route('/index')
 def index():
-    return render_template('index.html')  # Renderizar la plantilla index.html
+    return render_template('LandinPage/index.html')  # Renderizar la plantilla index.html
 
 @app.route('/estudiante')
 def estudiante():
     if not session.get('logged_in'):  # Verificar si el usuario está autenticado
         return redirect(url_for('home'))  # Redirigir a la página de inicio si no está autenticado
-    return render_template('estudiante.html')  # Renderizar la página de estudiante
+    return render_template('Gestion_de_informacion/Estu/estudiante.html')  # Renderizar la página de estudiante
 
 @app.route('/register', methods=['POST'])  # Define la ruta para registrar un nuevo usuario
 def register():
@@ -120,7 +120,7 @@ def register():
 
 @app.route('/register', methods=['GET'])
 def register_page():
-    return render_template('registrar.html')  # Renderizar la plantilla registrar.html
+    return render_template('Gestion_de_informacion/Admin/registrar.html')  # Renderizar la plantilla registrar.html
 
 @app.route('/logout')  # Define la ruta para cerrar sesión
 def logout():
@@ -172,13 +172,13 @@ def eliminar():
         cursor.close()
         connection.close()
     
-    return render_template('eliminar.html', users=users)  # Renderizar la plantilla con los usuarios
+    return render_template('Gestion_de_informacion/Admin/eliminar.html', users=users)  # Renderizar la plantilla con los usuarios
 
 @app.route('/profesor')  # Nueva ruta para el profesor
 def profesor():
     if not session.get('logged_in'):  # Verificar si el usuario está autenticado
         return redirect(url_for('home'))  # Redirigir a la página de inicio si no está autenticado
-    return render_template('profesor.html')  # Renderizar la página de profesor
+    return render_template('Gestion_de_informacion/Profe/profesor.html')  # Renderizar la página de profesor
 
 @app.route('/admin')  # Define la ruta para la página del administrador
 def admin():
@@ -200,7 +200,7 @@ def admin():
             'rol': admin[2],
             'contraseña': admin[3]
         }
-        return render_template('admin.html', admin=admin_info)
+        return render_template('Gestion_de_informacion/Admin/admin.html', admin=admin_info)
     else:
         return "Administrador no encontrado"
 
@@ -231,7 +231,7 @@ def perfil_admin():
             'documento_identidad': admin_info[1],
             'tipo_documento': admin_info[2]
         }
-        return render_template('Perfiladmin.html', admin=admin_data)
+        return render_template('Gestion_de_informacion/Admin/Perfiladmin.html', admin=admin_data)
     else:
         return "Perfil del administrador no encontrado"
 
@@ -262,7 +262,7 @@ def perfil_estudiante():
             'documento_identidad': estudiante_info[1],
             'tipo_documento': estudiante_info[2]
         }
-        return render_template('PerfilEstudiante.html', estudiante=estudiante_data)
+        return render_template('Gestion_de_informacion/Estu/PerfilEstudiante.html', estudiante=estudiante_data)
     else:
         return "Información del estudiante no encontrada"
 
@@ -293,7 +293,7 @@ def perfil_profesor():
             'documento_identidad': profesor_info[1],
             'tipo_documento': profesor_info[2]
         }
-        return render_template('Perfilprofesor.html', profesor=profesor_data)
+        return render_template('Gestion_de_informacion/Profe/Perfilprofesor.html', profesor=profesor_data)
     else:
         return "Información del profesor no encontrada"
 
@@ -313,7 +313,7 @@ def asignaturas():
     cursor.close()
     connection.close()
     
-    return render_template('Asignatura.html', asignaturas=asignaturas)
+    return render_template('Gestion_de_informacion/Profe/Asignatura.html', asignaturas=asignaturas)
 
 @app.route('/agregar_asignatura', methods=['GET', 'POST'])
 def agregar_asignatura():
@@ -350,7 +350,7 @@ def agregar_asignatura():
     cursor.close()
     connection.close()
     
-    return render_template('Agregarasignatura.html', profesores=profesores)
+    return render_template('Gestion_de_informacion/Profe/Agregarasignatura.html', profesores=profesores)
 
 @app.route('/asignar_notas', methods=['GET', 'POST'])
 def asignar_notas():
@@ -383,7 +383,7 @@ def asignar_notas():
     cursor.close()
     connection.close()
     
-    return render_template('Asignarnotas.html', estudiantes=estudiantes, asignaturas=asignaturas)
+    return render_template('Gestion_de_informacion/Profe/Asignarnotas.html', estudiantes=estudiantes, asignaturas=asignaturas)
 
 @app.route('/notas')
 def notas():
@@ -402,7 +402,7 @@ def notas():
     cursor.close()
     connection.close()
     
-    return render_template('Notas.html', notas=notas)
+    return render_template('Gestion_de_informacion/Profe/Notas.html', notas=notas)
 
 @app.route('/asignaturas_estudiante')
 def asignaturas_estudiante():
@@ -431,7 +431,7 @@ def asignaturas_estudiante():
         cursor.close()
         connection.close()
     
-    return render_template('Asignaturaestudiante.html', asignaturas=asignaturas)  # Asegúrate de pasar 'asignaturas'
+    return render_template('Gestion_de_informacion/Estu/Asignaturaestudiante.html', asignaturas=asignaturas)  # Asegúrate de pasar 'asignaturas'
 
 @app.route('/notas_estudiante')
 def notas_estudiante():
@@ -465,7 +465,7 @@ def notas_estudiante():
     cursor.close()
     connection.close()
 
-    return render_template('Notasestudiante.html', notas=notas, promedio=promedio)
+    return render_template('Gestion_de_informacion/Estu/Notasestudiante.html', notas=notas, promedio=promedio)
 
 @app.route('/buscar_asignaturas', methods=['GET'])
 def buscar_asignaturas():
@@ -483,7 +483,7 @@ def buscar_asignaturas():
     cursor.close()
     connection.close()
     
-    return render_template('Buscar.html', asignaturas=asignaturas, profesores=profesores)
+    return render_template('Gestion_de_informacion/Estu/Buscar.html', asignaturas=asignaturas, profesores=profesores)
 
 @app.route('/mostrar_asignaturas', methods=['POST'])
 def mostrar_asignaturas():
@@ -505,7 +505,7 @@ def mostrar_asignaturas():
     connection.close()
     
     if asignatura:
-        return render_template('Asignaturaestudiante.html', asignaturas=[asignatura])  # Pasar la información a la plantilla
+        return render_template('Gestion_de_informacion/Estu/Asignaturaestudiante.html', asignaturas=[asignatura])  # Pasar la información a la plantilla
     else:
         return "Asignatura no encontrada"
 
@@ -521,7 +521,7 @@ def buscar_notas():
     cursor.close()
     connection.close()
     
-    return render_template('buscarnotas.html', asignaturas=asignaturas)
+    return render_template('Gestion_de_informacion/Estu/buscarnotas.html', asignaturas=asignaturas)
 
 @app.route('/mostrar_notas', methods=['POST'])
 def mostrar_notas():
@@ -542,7 +542,7 @@ def mostrar_notas():
     cursor.close()
     connection.close()
     
-    return render_template('Notasestudiante.html', notas=notas)
+    return render_template('Gestion_de_informacion/Estu/Notasestudiante.html', notas=notas)
 
 
 
