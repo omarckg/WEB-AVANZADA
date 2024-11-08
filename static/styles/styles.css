@@ -91,5 +91,12 @@ body {
 footer {
     padding: 20px 0;
 }
-
+.dropdown-item {
+    background-color: #190394; /* Color de fondo por defecto */
+    color: rgb(174, 174, 174); /* Color del texto por defecto */
+}
+.dropdown-item:hover {
+    background-color: #0146b5; /* Cambia el color de fondo al pasar el mouse */
+    color: black; /* Cambia el color del texto al pasar el mouse */
+}
 /* Otros estilos generales que necesites */
