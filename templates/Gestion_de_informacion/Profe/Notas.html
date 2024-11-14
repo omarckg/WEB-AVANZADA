@@ -43,7 +43,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ url_for('horarios_profesor') }}">
                                 <i class="fas fa-clock"></i> Horarios
                             </a>
                         </li>
@@ -58,27 +58,56 @@
             </nav>
 
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                <h1>Notas</h1>
+                <h1>Consulta de Notas</h1>
+
+                <!-- Formulario de búsqueda -->
+                <form method="POST" action="{{ url_for('buscar_notas') }}" class="my-4">
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="estudiante">Nombre del Estudiante</label>
+                            <input type="text" class="form-control" id="estudiante" name="estudiante" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="asignatura">Asignatura</label>
+                            <input type="text" class="form-control" id="asignatura" name="asignatura" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="salon">Salón</label>
+                            <input type="text" class="form-control" id="salon" name="salon" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </form>
+
+                <!-- Tabla de notas -->
                 <div class="table-container">
-                    <h2 class="mt-4">Lista de Notas</h2>
+                    <h2 class="mt-4">Notas del Estudiante</h2>
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Estudiante</th>
-                                <th>Asignatura</th>
-                                <th>Nota</th>
-                                <th>Semestre</th>
+                                <th>Nota 1</th>
+                                <th>Fallos 1</th>
+                                <th>Nota 2</th>
+                                <th>Fallos 2</th>
+                                <th>Nota 3</th>
+                                <th>Fallos 3</th>
+                                <th>Habilidad</th>
+                                <th>Definitiva</th>
+                                <th>Total Fallos</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {% for nota in notas %}
+                            {% for nota in notas_estudiante %}
                             <tr>
-                                <td>{{ nota[0] }}</td>
-                                <td>{{ nota[1] }}</td>
-                                <td>{{ nota[2] }}</td>
-                                <td>{{ nota[3] }}</td>
-                                <td>{{ nota[4] }}</td>
+                                <td>{{ nota.nota1 }}</td>
+                                <td>{{ nota.fallos1 }}</td>
+                                <td>{{ nota.nota2 }}</td>
+                                <td>{{ nota.fallos2 }}</td>
+                                <td>{{ nota.nota3 }}</td>
+                                <td>{{ nota.fallos3 }}</td>
+                                <td>{{ nota.habilidad }}</td>
+                                <td>{{ nota.definitiva }}</td>
+                                <td>{{ nota.total_fallos }}</td>
                             </tr>
                             {% endfor %}
                         </tbody>

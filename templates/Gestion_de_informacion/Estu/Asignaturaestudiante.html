@@ -7,6 +7,40 @@
     <title>Asignaturas del Estudiante</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+    <style>
+        .text-right-custom {
+            text-align: right;
+            padding-right: 2rem;
+        }
+
+        .details-row {
+            display: none;
+        }
+
+        .toggle-button {
+            border: none;
+            background: none;
+            color: #007bff;
+            cursor: pointer;
+            outline: none;
+            font-size: 1.2rem;
+        }
+
+        .table-container {
+            margin-top: 2rem;
+            /* Separación del contenedor */
+        }
+
+        h2 {
+            color: black;
+            /* Color negro para el título */
+        }
+
+        .bg-light-grey {
+            background-color: #f8f9fa;
+            /* Color gris para detalles */
+        }
+    </style>
 </head>
 
 <body>
@@ -27,7 +61,7 @@
                                 <i class="fas fa-user"></i> Perfil
                             </a>
                         </li>
-                        <li class="nav-item"></li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('notas_estudiante') }}">
                                 <i class="fas fa-clipboard-list"></i> Notas
                             </a>
@@ -37,12 +71,13 @@
                                 <i class="fas fa-book"></i> Asignaturas
                             </a>
                         </li>
-                        
+                        <!-- Modificación en el archivo principal (Asignaturas) -->
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ url_for('horarios_estudiante') }}">
                                 <i class="fas fa-clock"></i> Horarios
                             </a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="#">
                                 <i class="fas fa-cog"></i> Configurar
@@ -58,28 +93,56 @@
                 <div class="table-container">
                     <h2 class="mt-4">Lista de Asignaturas</h2>
                     <a href="{{ url_for('buscar_asignaturas') }}" class="btn btn-primary mb-3">Buscar Asignaturas</a>
-                    <table class="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th>Nombre de la Asignatura</th>
-                                <th>Profesor</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for asignatura in asignaturas %}
-                            <tr>
-                                <td>{{ asignatura[0] }}</td>
-                                <td>{{ asignatura[1] }}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                    <div class="accordion" id="accordionAsignaturas">
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link text-dark" type="button" data-toggle="collapse"
+                                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        COD101 - Matemáticas I
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                                data-parent="#accordionAsignaturas">
+                                <div class="card-body bg-light-grey">
+                                    <p><strong>Grupo:</strong> A</p>
+                                    <p><strong>Profesor:</strong> Juan Pérez</p>
+                                    <p><strong>Salón:</strong> 101</p>
+                                    <p><strong>Horas Totales:</strong> 30</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingTwo">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link text-dark" type="button" data-toggle="collapse"
+                                        data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                        COD102 - Programación Básica
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                data-parent="#accordionAsignaturas">
+                                <div class="card-body bg-light-grey">
+                                    <p><strong>Grupo:</strong> B</p>
+                                    <p><strong>Profesor:</strong> Ana Gómez</p>
+                                    <p><strong>Salón:</strong> 102</p>
+                                    <p><strong>Horas Totales:</strong> 25</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Añade más asignaturas si es necesario -->
+                    </div>
                 </div>
             </main>
         </div>
     </div>
 
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

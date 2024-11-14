@@ -23,7 +23,7 @@
                     <h4 class="text-center text-primary font-weight-bold">Estudiante</h4>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">
+                            <a class="nav-link" href="{{ url_for('perfil_estudiante') }}">
                                 <i class="fas fa-user"></i> Perfil
                             </a>
                         </li>
@@ -38,7 +38,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ url_for('horarios_estudiante') }}">
                                 <i class="fas fa-clock"></i> Horarios
                             </a>
                         </li>
@@ -60,16 +60,62 @@
                         class="img-fluid" style="max-width: 300px;">
                 </div>
 
-                <!-- Sección de información del estudiante -->
+                <!-- Sección de información del estudiante editable -->
                 <div class="card my-4">
                     <div class="card-body">
                         <h5 class="card-title">Información del Estudiante</h5>
-                        <p><strong>Nombre de Usuario:</strong> {{ estudiante.username }}</p>
-                        <p><strong>ID:</strong> {{ estudiante.id }}</p>
-                        <p><strong>Rol:</strong> {{ estudiante.rol }}</p>
-                        <p><strong>Email:</strong> {{ estudiante.email }}</p>
-                        <p><strong>Documento de Identidad:</strong> {{ estudiante.documento_identidad }}</p>
-                        <p><strong>Tipo de Documento:</strong> {{ estudiante.tipo_documento }}</p>
+                        
+                        <!-- Formulario editable para la información del estudiante -->
+                        <form>
+                            <div class="form-group">
+                                <label for="username">Nombre de Usuario</label>
+                                <input type="text" class="form-control" id="username" value="{{ estudiante.username }}" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="id">ID</label>
+                                <input type="text" class="form-control" id="id" value="{{ estudiante.id }}" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="rol">Rol</label>
+                                <input type="text" class="form-control" id="rol" value="{{ estudiante.rol }}" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" value="{{ estudiante.email }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tipo_documento">Tipo de Documento</label>
+                                <select class="form-control" id="tipo_documento">
+                                    <option value="tarjeta" {% if estudiante.tipo_documento == 'tarjeta' %} selected {% endif %}>Tarjeta de Identidad</option>
+                                    <option value="cedula" {% if estudiante.tipo_documento == 'cedula' %} selected {% endif %}>Cédula de Ciudadanía</option>
+                                    <option value="pasaporte" {% if estudiante.tipo_documento == 'pasaporte' %} selected {% endif %}>Pasaporte</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="documento_identidad">Documento de Identidad</label>
+                                <input type="text" class="form-control" id="documento_identidad" value="{{ estudiante.documento_identidad }}">
+                            </div>
+
+                            <!-- Campos adicionales para el tutor -->
+                            <div class="form-group">
+                                <label for="nombre_tutor">Nombre del Tutor</label>
+                                <input type="text" class="form-control" id="nombre_tutor" value="{{ estudiante.nombre_tutor }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contacto_tutor">Contacto del Tutor</label>
+                                <input type="text" class="form-control" id="contacto_tutor" value="{{ estudiante.contacto_tutor }}">
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </main>

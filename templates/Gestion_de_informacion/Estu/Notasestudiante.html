@@ -7,6 +7,33 @@
     <title>Notas del Estudiante</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+    <style>
+        table {
+            width: 100%;
+        }
+
+        th, td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        th {
+            background-color: #f8f9fa;
+        }
+
+        .nota {
+            font-weight: bold;
+        }
+
+        .fallo {
+            color: red;
+        }
+
+        .nota-final {
+            font-weight: bold;
+            color: green;
+        }
+    </style>
 </head>
 
 <body>
@@ -28,7 +55,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('notas_estudiante') }}">
+                            <a class="nav-link active" href="{{ url_for('notas_estudiante') }}">
                                 <i class="fas fa-clipboard-list"></i> Notas
                             </a>
                         </li>
@@ -38,7 +65,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ url_for('horarios_estudiante') }}">
                                 <i class="fas fa-clock"></i> Horarios
                             </a>
                         </li>
@@ -57,31 +84,110 @@
                 <div class="table-container">
                     <div class="mb-3">
                         <a href="{{ url_for('buscar_notas') }}" class="btn btn-primary" id="buscarNota">Buscar Nota</a>
-                        
                     </div>
                     <h2 class="mt-4">Lista de Notas</h2>
-                    <table class="table table-striped table-hover">
+                    <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>Código</th>
                                 <th>Asignatura</th>
-                                <th>Nota</th>
+                                <th>Grupo</th>
+                                <th>Nota 1</th>
+                                <th>Fallos 1</th>
+                                <th>Nota 2</th>
+                                <th>Fallos 2</th>
+                                <th>Nota 3</th>
+                                <th>Fallos 3</th>
+                                <th>Hab.</th>
+                                <th>Definitiva</th>
+                                <th>Total Fallos</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {% if notas %}
-                                {% for nota in notas %}
-                                <tr>
-                                    <td>{{ nota[0] }}</td>
-                                    <td>{{ nota[1] }}</td>
-                                    <td>{{ nota[2] }}</td>
-                                </tr>
-                                {% endfor %}
-                            {% else %}
-                                <tr>
-                                    <td colspan="3" class="text-center">No hay notas disponibles para este estudiante.</td>
-                                </tr>
-                            {% endif %}
+                            <tr>
+                                <td>01916</td>
+                                <td>ÉTICA</td>
+                                <td>9ISA</td>
+                                <td class="nota">5.00 - (30%)</td>
+                                <td class="fallo">-</td>
+                                <td class="nota">5.00 - (30%)</td>
+                                <td class="fallo">-</td>
+                                <td class="nota">0.00 - (40%)</td>
+                                <td class="fallo">-</td>
+                                <td>-</td>
+                                <td class="nota-final">3</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>02347</td>
+                                <td>PRÁCTICA SOCIAL</td>
+                                <td>8ISA</td>
+                                <td class="nota">0.00 - (100%)</td>
+                                <td class="fallo">-</td>
+                                <td class="fallo">-</td>
+                                <td class="fallo">-</td>
+                                <td class="fallo">-</td>
+                                <td class="fallo">-</td>
+                                <td>-</td>
+                                <td class="nota-final">0</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>02689</td>
+                                <td>WEB AVANZADAS</td>
+                                <td>10ISA</td>
+                                <td class="nota">4.60 - (30%)</td>
+                                <td class="fallo">1</td>
+                                <td class="nota">2.90 - (30%)</td>
+                                <td class="fallo">-</td>
+                                <td class="nota">0.00 - (40%)</td>
+                                <td class="fallo">-</td>
+                                <td>-</td>
+                                <td class="nota-final">2.3</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>19046</td>
+                                <td>INVESTIGACIÓN APLICADA IV</td>
+                                <td>8ISA</td>
+                                <td class="nota">3.40 - (30%)</td>
+                                <td class="fallo">-</td>
+                                <td class="nota">3.60 - (30%)</td>
+                                <td class="fallo">-</td>
+                                <td class="nota">0.00 - (40%)</td>
+                                <td class="fallo">-</td>
+                                <td>-</td>
+                                <td class="nota-final">2.1</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>19107</td>
+                                <td>MULTICAMPUS II</td>
+                                <td>9ISA</td>
+                                <td class="nota">0.00 - (30%)</td>
+                                <td class="fallo">-</td>
+                                <td class="nota">0.00 - (30%)</td>
+                                <td class="fallo">-</td>
+                                <td class="nota">0.00 - (40%)</td>
+                                <td class="fallo">-</td>
+                                <td>-</td>
+                                <td class="nota-final">0</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>19109</td>
+                                <td>DIRECCIÓN ESTRATÉGICA DE TECNOLOGÍA DE INFORMACIÓN</td>
+                                <td>10ISA</td>
+                                <td class="nota">2.10 - (30%)</td>
+                                <td class="fallo">-</td>
+                                <td class="nota">3.00 - (30%)</td>
+                                <td class="fallo">1</td>
+                                <td class="nota">0.00 - (40%)</td>
+                                <td class="fallo">-</td>
+                                <td>-</td>
+                                <td class="nota-final">1.5</td>
+                                <td>1</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

@@ -12,6 +12,7 @@
 <body>
     <div class="container-fluid">
         <div class="row">
+            <!-- Sidebar -->
             <nav class="col-md-3 col-lg-2 d-none d-md-block bg-light sidebar">
                 <div class="sidebar-sticky">
                     <div class="text-center my-4">
@@ -39,11 +40,11 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('notas') }}">
-                                <i class="fas fa-clipboard-list"></i> Ver Notas
+                                <i class="fas fa-clipboard-list"></i> Notas
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ url_for('horarios_profesor') }}">
                                 <i class="fas fa-clock"></i> Horarios
                             </a>
                         </li>
@@ -57,6 +58,7 @@
                 </div>
             </nav>
 
+            <!-- Main Content -->
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                 <h1>BIENVENIDO AL SISTEMA DE INFORMACIÓN</h1>
                 <p>Hola, Profesor, ¿qué deseas hacer?</p>
@@ -65,16 +67,32 @@
                         class="img-fluid" style="max-width: 300px;">
                 </div>
 
-                <!-- Sección de información del profesor -->
+                <!-- Sección de información del profesor editable -->
                 <div class="card my-4">
                     <div class="card-body">
                         <h5 class="card-title">Información del Profesor</h5>
-                        <p><strong>Nombre de Usuario:</strong> {{ profesor.nombre }}</p>
-                        <p><strong>ID:</strong> {{ profesor.id }}</p>
-                        <p><strong>Rol:</strong> {{ profesor.rol }}</p>
-                        <p><strong>Email:</strong> {{ profesor.email }}</p>
-                        <p><strong>Documento de Identidad:</strong> {{ profesor.documento_identidad }}</p>
-                        <p><strong>Tipo de Documento:</strong> {{ profesor.tipo_documento }}</p>
+                        
+                        <!-- Formulario editable para la información del profesor -->
+                        <form>
+                            <div class="form-group">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" class="form-control" id="nombre" value="{{ profesor.nombre }}" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="id">ID</label>
+                                <input type="text" class="form-control" id="id" value="{{ profesor.id }}" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" value="{{ profesor.email }}">
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </main>

@@ -39,11 +39,11 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('notas') }}">
-                                <i class="fas fa-clipboard-list"></i> Ver Notas
+                                <i class="fas fa-clipboard-list"></i> Notas
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ url_for('horarios_profesor') }}">
                                 <i class="fas fa-clock"></i> Horarios
                             </a>
                         </li>
@@ -65,19 +65,42 @@
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>Código</th>
                                 <th>Nombre</th>
-                                <th>Profesor</th>
+                                <th>Grupo/Salón</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {% for asignatura in asignaturas %}
                             <tr>
-                                <td>{{ asignatura[0] }}</td>
-                                <td>{{ asignatura[1] }}</td>
-                                <td>{{ asignatura[2] }}</td>
+                                <td>MAT101</td>
+                                <td>Matemáticas Básicas</td>
+                                <td>A-101</td>
                             </tr>
-                            {% endfor %}
+                            <tr>
+                                <td>PROG102</td>
+                                <td>Introducción a la Programación</td>
+                                <td>B-203</td>
+                            </tr>
+                            <tr>
+                                <td>FIS103</td>
+                                <td>Física I</td>
+                                <td>A-104</td>
+                            </tr>
+                            <tr>
+                                <td>QUI104</td>
+                                <td>Química General</td>
+                                <td>C-301</td>
+                            </tr>
+                            <tr>
+                                <td>ING105</td>
+                                <td>Inglés Intermedio</td>
+                                <td>B-205</td>
+                            </tr>
+                            <tr>
+                                <td>HIS106</td>
+                                <td>Historia Mundial</td>
+                                <td>D-102</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
