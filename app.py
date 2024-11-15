@@ -544,7 +544,22 @@ def mostrar_notas():
     
     return render_template('Gestion_de_informacion/Estu/Notasestudiante.html', notas=notas)
 
+@app.route('/horarios_estudiante')
+def horarios_estudiante():
+    # Aquí puedes agregar la lógica necesaria para mostrar los horarios
+    return render_template('Gestion_de_informacion/Estu/horario_estudiante.html')  # Renderiza el template correspondiente
+
+@app.route('/horarios_profesor')
+def horarios_profesor():
+    return render_template('Gestion_de_informacion/Profe/HorarioProfesor.html')
+
+@app.route('/asignacion_horarios')
+def asignacion_horarios():
+    return render_template('Gestion_de_informacion/Admin/asignacion_horarios.html', admin=None)
+
 
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+app = Flask(__name__, static_folder='static')
