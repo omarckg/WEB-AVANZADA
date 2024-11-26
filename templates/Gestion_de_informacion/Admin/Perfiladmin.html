@@ -21,15 +21,12 @@
                     <h4 class="text-center text-primary font-weight-bold">Administrador</h4>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">
+                            <a class="nav-link" href="{{ url_for('perfil_admin') }}">
+                                <!-- Redirigir a Perfiladmin.html -->
                                 <i class="fas fa-user"></i> Perfil
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fas fa-tasks"></i> Tareas
-                            </a>
-                        </li>
+                        
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('register') }}">
                                 <i class="fas fa-user-plus"></i> Registrar usuario
@@ -46,11 +43,7 @@
                             </a>
                             
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fas fa-cog"></i> Configurar
-                            </a>
-                        </li>
+                       
                         <a href="{{ url_for('logout') }}" class="btn btn-danger btn-sm">Cerrar sesión</a>
                     </ul>
                 </div>
